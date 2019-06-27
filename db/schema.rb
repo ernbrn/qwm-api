@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_022711) do
+ActiveRecord::Schema.define(version: 2019_06_27_025940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 2019_06_27_022711) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.boolean "public"
+    t.bigint "users_id", null: false
+    t.string "favorable_type"
+    t.bigint "favorable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["favorable_type", "favorable_id"], name: "index_favorites_on_favorable_type_and_favorable_id"
+    t.index ["users_id"], name: "index_favorites_on_users_id"
   end
 
   create_table "jwt_blacklist", force: :cascade do |t|
@@ -99,6 +110,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_022711) do
     t.integer "contributor_id"
   end
 
+  add_foreign_key "favorites", "users", column: "users_id"
   add_foreign_key "reviews", "users"
   add_foreign_key "works", "users", column: "contributor_id"
 end

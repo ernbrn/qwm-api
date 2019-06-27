@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites
   devise_for :users, defaults: { format: :json }
   resources :ratings
   resources :reviews
