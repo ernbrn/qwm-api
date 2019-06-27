@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, defaults: { format: :json }, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    passwords: 'users/passwords'
-  }
+  devise_for :users, defaults: { format: :json }
   resources :ratings
   resources :reviews
   resources :references
