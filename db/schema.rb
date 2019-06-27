@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_031145) do
+ActiveRecord::Schema.define(version: 2019_06_27_022711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 2019_06_25_031145) do
     t.bigint "work_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id", "work_id"], name: "index_reviews_on_user_id_and_work_id", unique: true
+    t.index ["user_id"], name: "index_reviews_on_user_id"
     t.index ["work_id"], name: "index_reviews_on_work_id"
   end
 
@@ -77,11 +80,25 @@ ActiveRecord::Schema.define(version: 2019_06_25_031145) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "work_creators", force: :cascade do |t|
+    t.integer "work_id", null: false
+    t.integer "creator_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id", "work_id"], name: "index_work_creators_on_creator_id_and_work_id", unique: true
+    t.index ["creator_id"], name: "index_work_creators_on_creator_id"
+    t.index ["work_id", "creator_id"], name: "index_work_creators_on_work_id_and_creator_id", unique: true
+    t.index ["work_id"], name: "index_work_creators_on_work_id"
+  end
+
   create_table "works", force: :cascade do |t|
     t.string "title"
     t.datetime "publish_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "contributor_id"
   end
 
+  add_foreign_key "reviews", "users"
+  add_foreign_key "works", "users", column: "contributor_id"
 end
