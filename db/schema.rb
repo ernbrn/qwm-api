@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_025940) do
+ActiveRecord::Schema.define(version: 2019_06_28_032844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_works", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.bigint "collection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collection_id", "work_id"], name: "index_collection_works_on_collection_id_and_work_id", unique: true
+    t.index ["collection_id"], name: "index_collection_works_on_collection_id"
+    t.index ["work_id", "collection_id"], name: "index_collection_works_on_work_id_and_collection_id", unique: true
+    t.index ["work_id"], name: "index_collection_works_on_work_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
 
   create_table "creators", force: :cascade do |t|
     t.string "name"
@@ -23,13 +42,33 @@ ActiveRecord::Schema.define(version: 2019_06_27_025940) do
 
   create_table "favorites", force: :cascade do |t|
     t.boolean "public"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.string "favorable_type"
     t.bigint "favorable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["favorable_type", "favorable_id"], name: "index_favorites_on_favorable_type_and_favorable_id"
-    t.index ["users_id"], name: "index_favorites_on_users_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "interest_list_works", force: :cascade do |t|
+    t.bigint "interest_list_id", null: false
+    t.bigint "work_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interest_list_id", "work_id"], name: "index_interest_list_works_on_interest_list_id_and_work_id", unique: true
+    t.index ["interest_list_id"], name: "index_interest_list_works_on_interest_list_id"
+    t.index ["work_id", "interest_list_id"], name: "index_interest_list_works_on_work_id_and_interest_list_id", unique: true
+    t.index ["work_id"], name: "index_interest_list_works_on_work_id"
+  end
+
+  create_table "interest_lists", force: :cascade do |t|
+    t.string "name"
+    t.boolean "public"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_interest_lists_on_user_id"
   end
 
   create_table "jwt_blacklist", force: :cascade do |t|
@@ -38,6 +77,16 @@ ActiveRecord::Schema.define(version: 2019_06_27_025940) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["jti"], name: "index_jwt_blacklist_on_jti", unique: true
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "link"
+    t.string "link_text"
+    t.string "linkable_type", null: false
+    t.bigint "linkable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -92,8 +141,8 @@ ActiveRecord::Schema.define(version: 2019_06_27_025940) do
   end
 
   create_table "work_creators", force: :cascade do |t|
-    t.integer "work_id", null: false
-    t.integer "creator_id", null: false
+    t.bigint "work_id", null: false
+    t.bigint "creator_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id", "work_id"], name: "index_work_creators_on_creator_id_and_work_id", unique: true
@@ -102,15 +151,33 @@ ActiveRecord::Schema.define(version: 2019_06_27_025940) do
     t.index ["work_id"], name: "index_work_creators_on_work_id"
   end
 
+  create_table "work_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_work_types_on_name", unique: true
+  end
+
   create_table "works", force: :cascade do |t|
     t.string "title"
     t.datetime "publish_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "contributor_id"
+    t.bigint "work_type_id", null: false
+    t.index ["work_type_id"], name: "index_works_on_work_type_id"
   end
 
-  add_foreign_key "favorites", "users", column: "users_id"
+  add_foreign_key "collection_works", "collections"
+  add_foreign_key "collection_works", "works"
+  add_foreign_key "collections", "users"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "interest_list_works", "interest_lists"
+  add_foreign_key "interest_list_works", "works"
+  add_foreign_key "interest_lists", "users"
   add_foreign_key "reviews", "users"
+  add_foreign_key "work_creators", "creators"
+  add_foreign_key "work_creators", "works"
   add_foreign_key "works", "users", column: "contributor_id"
+  add_foreign_key "works", "work_types"
 end

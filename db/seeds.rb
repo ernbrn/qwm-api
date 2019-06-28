@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Book
+# Audiobook
+# Album
+# Song
+# Television show
+# Movie
+# Poetry
+# Spoken word
+# Performance
+# Play
+# Musical
+
+WorkType.create([
+  {name: 'book'},
+  {name: 'audiobook'},
+  {name: 'album'},
+  {name: 'song'},
+  {name: 'tv show'},
+  {name: 'movie'},
+  {name: 'poem'},
+  {name: 'play'},
+  {name: 'musical'},
+  {name: 'podcast episode'},
+])

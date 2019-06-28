@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :collection_works
+  resources :collections
+  resources :interest_list_works
+  resources :interest_lists
+  resources :work_types
+  resources :links
   resources :favorites
   devise_for :users, defaults: { format: :json }
   resources :ratings
