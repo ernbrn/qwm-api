@@ -1,0 +1,64 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 6.0
+
+Documentation:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Metrics/BlockLength:
+  ExcludedMethods:
+    - context
+    - describe
+    - draw
+    - factory
+    - it
+    - namespace
+    - define
+    - shared_examples
+    - shared_context
+    - feature
+    - scenario
+    - within
+    - def_param_group
+    - param
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
+
+RSpec/DescribedClass:
+  SkipBlocks: true
+
+RSpec/EmptyLineAfterSubject:
+  Exclude:
+    - 'spec/factories/**/*'
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/ExampleLength:
+  Max: 50
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/features/**/*_spec.rb
+    - spec/support/shared_examples/features/**/*.rb
