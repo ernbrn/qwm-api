@@ -12,6 +12,7 @@ class WorksController < ApplicationController
   end
 
   # POST /works
+  # POST /creators/:creator_id/works
   def create
     @work.contributor = current_user
     if @work.save
