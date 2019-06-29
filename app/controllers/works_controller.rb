@@ -38,6 +38,10 @@ class WorksController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_work
+      @work = Work.find(params[:id])
+    end
 
   def work_params
     params.require(:work).permit(:title, :publish_date, :work_type_id)
