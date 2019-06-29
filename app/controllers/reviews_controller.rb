@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :update, :destroy]
 
-  # GET /reviews
+  # GET /user/:user_id/reviews
   def index
     @reviews = Review.all
 
@@ -13,9 +13,9 @@ class ReviewsController < ApplicationController
     render json: @review
   end
 
-  # POST /reviews
+  # POST /user/:user_id/reviews
   def create
-    @review = Review.new(review_params.merge(user_id: params[:user_id]))
+    @review = Review.new(review_params)
 
     if @review.save
       render json: @review, status: :created, location: @review

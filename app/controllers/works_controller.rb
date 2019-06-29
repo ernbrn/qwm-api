@@ -18,7 +18,6 @@ class WorksController < ApplicationController
   # POST /creators/:creator_id/works
   def create
     @work = Work.new(work_params)
-    assign_creator
 
     if @work.save
       render json: @work, status: :created, location: @work
@@ -42,21 +41,13 @@ class WorksController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_work
+      @work = Work.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_work
-    @work = Work.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def work_params
-    params.require(:work).permit(:title, :publish_date, :work_type_id, :contributor_id)
-  end
-
-  def assign_creator
-    creator_id = params[:creator_id]
-    return unless creator_id
-
-    @work.creators << Creator.find(creator_id)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def work_params
+      params.require(:work).permit(:title, :publish_date, :work_type_id, :contributor_id)
+    end
 end
