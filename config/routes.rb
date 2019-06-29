@@ -8,9 +8,18 @@ Rails.application.routes.draw do
   resources :favorites
   devise_for :users, defaults: { format: :json }
   resources :ratings
-  resources :reviews
   resources :references
-  resources :creators
-  resources :works
+
+  resources :creators do
+    resources :works
+  end
+
+  resources :works do
+    resources :creators
+  end
+
+  resources :users do
+    resources :reviews, shallow: true
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
