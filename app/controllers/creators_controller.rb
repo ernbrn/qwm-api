@@ -39,7 +39,7 @@ class CreatorsController < ApplicationController
     @creator.destroy
   end
 
-    private
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_creator
       @creator = Creator.find(params[:id])
