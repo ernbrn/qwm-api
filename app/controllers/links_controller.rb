@@ -1,7 +1,8 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :update, :destroy]
 
-  # GET /links
+  # GET /creators/:creator_id/links
+  # GET /works/:work_id/links
   def index
     @links = Link.all
 
@@ -13,7 +14,8 @@ class LinksController < ApplicationController
     render json: @link
   end
 
-  # POST /links
+  # POST /creators/:creator_id/links
+  # POST /works/:work_id/links
   def create
     @link = Link.new(link_params)
 

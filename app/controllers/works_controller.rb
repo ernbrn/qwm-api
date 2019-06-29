@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   before_action :set_work, only: [:show, :update, :destroy]
 
   # GET /works
+  # GET /creators/:creator_id/works
   def index
     @works = Work.all
 

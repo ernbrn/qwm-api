@@ -14,7 +14,7 @@ class CreatorsController < ApplicationController
   end
 
   # POST /creators
-  # POST /works/:id/creators
+  # POST /works/:work_id/creators
   def create
     @creator = Creator.new(creator_params)
     assign_work

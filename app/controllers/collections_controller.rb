@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :update, :destroy]
 
-  # GET /collections
+  # GET /users/:user_id/collections
   def index
     @collections = Collection.all
 
@@ -13,7 +13,7 @@ class CollectionsController < ApplicationController
     render json: @collection
   end
 
-  # POST /collections
+  # POST /users/:user_id/collections
   def create
     @collection = Collection.new(collection_params)
 

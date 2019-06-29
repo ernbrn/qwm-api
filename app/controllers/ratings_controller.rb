@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :update, :destroy]
 
-  # GET /ratings
+  # GET /users/:user_id/ratings
   def index
     @ratings = Rating.all
 
@@ -13,7 +13,7 @@ class RatingsController < ApplicationController
     render json: @rating
   end
 
-  # POST /ratings
+  # POST /users/:user_id/ratings
   def create
     @rating = Rating.new(rating_params)
 

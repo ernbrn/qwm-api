@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
 
-  # GET /favorites
+  # GET /users/:user_id/favorites
   def index
     @favorites = Favorite.all
 
@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
     render json: @favorite
   end
 
-  # POST /favorites
+  # POST /users/:user_id/favorites
   def create
     @favorite = Favorite.new(favorite_params)
 

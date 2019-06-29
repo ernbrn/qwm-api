@@ -1,7 +1,7 @@
 class InterestListsController < ApplicationController
   before_action :set_interest_list, only: [:show, :update, :destroy]
 
-  # GET /interest_lists
+  # GET /users/:user_id/interest_lists
   def index
     @interest_lists = InterestList.all
 
@@ -13,7 +13,7 @@ class InterestListsController < ApplicationController
     render json: @interest_list
   end
 
-  # POST /interest_lists
+  # POST /users/:user_id/interest_lists
   def create
     @interest_list = InterestList.new(interest_list_params)
 
