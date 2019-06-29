@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   load_and_authorize_resource
 
   # GET /works
+  # GET /creators/:creator_id/works
   def index
     render json: @works
   end

@@ -1,7 +1,8 @@
 class ReferencesController < ApplicationController
   load_and_authorize_resource
 
-  # GET /references
+  # GET /works/:work_id/references
+  # GET /creators/:creator_id/references
   def index
     @references = Reference.all
 
@@ -13,7 +14,8 @@ class ReferencesController < ApplicationController
     render json: @reference
   end
 
-  # POST /references
+  # POST /works/:work_id/references
+  # POST /creators/:creator_id/references
   def create
     @reference = Reference.new(reference_params)
 

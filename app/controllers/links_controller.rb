@@ -1,7 +1,8 @@
 class LinksController < ApplicationController
   load_and_authorize_resource
 
-  # GET /links
+  # GET /creators/:creator_id/links
+  # GET /works/:work_id/links
   def index
     render json: @links
   end
@@ -11,7 +12,8 @@ class LinksController < ApplicationController
     render json: @link
   end
 
-  # POST /links
+  # POST /creators/:creator_id/links
+  # POST /works/:work_id/links
   def create
     if @link.save
       render json: @link, status: :created, location: @link

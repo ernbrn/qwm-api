@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
   load_and_authorize_resource
 
-  # GET /ratings
+  # GET /users/:user_id/ratings
   def index
     render json: @ratings
   end
@@ -11,7 +11,7 @@ class RatingsController < ApplicationController
     render json: @rating
   end
 
-  # POST /ratings
+  # POST /users/:user_id/ratings
   def create
     if @rating.save
       render json: @rating, status: :created, location: @rating
