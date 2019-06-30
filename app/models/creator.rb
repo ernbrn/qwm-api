@@ -1,4 +1,6 @@
 class Creator < ApplicationRecord
+  acts_as_taggable_on :genres
+
   has_many :work_creators, dependent: :destroy
   has_many :works, through: :work_creators
   has_many :reviews, through: :works

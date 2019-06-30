@@ -1,4 +1,6 @@
 class Work < ApplicationRecord
+  acts_as_taggable_on :genres, :content_warnings, :themes
+
   belongs_to :contributor, class_name: 'User'
   belongs_to :work_type
 

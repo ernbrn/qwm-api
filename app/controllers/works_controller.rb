@@ -46,6 +46,10 @@ class WorksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def work_params
-      params.require(:work).permit(:title, :publish_date)
+      params.require(:work).permit(:title,
+                                   :publish_date,
+                                   :genere_list,
+                                   :contenet_warning_list,
+                                   :theme_list)
     end
 end
