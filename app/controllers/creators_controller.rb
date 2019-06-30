@@ -46,6 +46,6 @@ class CreatorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def creator_params
-      params.require(:creator).permit(:name, :genere_list)
+      params.require(:creator).permit(:name, :genre_list)
     end
 end

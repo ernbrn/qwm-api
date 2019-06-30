@@ -48,8 +48,8 @@ class WorksController < ApplicationController
     def work_params
       params.require(:work).permit(:title,
                                    :publish_date,
-                                   :genere_list,
-                                   :contenet_warning_list,
+                                   :genre_list,
+                                   :content_warning_list,
                                    :theme_list)
     end
 end
