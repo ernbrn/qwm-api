@@ -1,6 +1,7 @@
 GIT
-  remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: fbf2b609b69a90edcd5813e9ba6395a7e293e977
+  remote: https://github.com/spark-solutions/acts-as-taggable-on.git
+  revision: 22efcaca0e90a0f2999e5262f7fe1f633d89943a
+  branch: fix/rails-6-and-failing-specs
   specs:
     acts-as-taggable-on (6.0.1)
       activerecord (>= 5.0, < 6.1)
