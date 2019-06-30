@@ -1,0 +1,23 @@
+version: 2
+
+plugins:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+    exclude_patterns:
+      - spec/
+  git-legal:
+    enabled: true
+  markdownlint:
+    enabled: true
+  reek:
+    enabled: true
+  rubocop:
+    enabled: true
+
+exclude_patterns:
+  - db/
+  - vendor/
+  - tmp/
