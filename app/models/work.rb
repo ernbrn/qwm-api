@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Work < ApplicationRecord
   belongs_to :contributor, class_name: 'User'
   belongs_to :work_type
@@ -12,14 +14,14 @@ class Work < ApplicationRecord
   has_many :references, as: :referenced_by, class_name: 'Reference'
 
   has_many :mentioned_creators, through: :references,
-           source: :reference_to, source_type: 'Creator'
+                                source: :reference_to, source_type: 'Creator'
 
   has_many :mentioned_works, through: :references,
-           source: :reference_to, source_type: 'Work'
+                             source: :reference_to, source_type: 'Work'
 
   has_many :creator_referrers, through: :references_to,
-           source: :referenced_by, source_type: 'Creator'
+                               source: :referenced_by, source_type: 'Creator'
 
   has_many :work_referrers, through: :references_to,
-           source: :referenced_by, source_type: 'Work'
+                            source: :referenced_by, source_type: 'Work'
 end

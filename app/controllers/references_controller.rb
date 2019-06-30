@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReferencesController < ApplicationController
   before_action :set_reference, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class ReferencesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reference
-      @reference = Reference.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def reference_params
-      params.require(:reference).permit(:note)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reference
+    @reference = Reference.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def reference_params
+    params.require(:reference).permit(:note)
+  end
 end

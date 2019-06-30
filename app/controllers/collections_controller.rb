@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class CollectionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collection
-      @collection = Collection.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def collection_params
-      params.require(:collection).permit(:name, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_collection
+    @collection = Collection.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def collection_params
+    params.require(:collection).permit(:name, :user_id)
+  end
 end

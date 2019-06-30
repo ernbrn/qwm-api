@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InterestListsController < ApplicationController
   before_action :set_interest_list, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class InterestListsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_interest_list
-      @interest_list = InterestList.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def interest_list_params
-      params.require(:interest_list).permit(:name, :public, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_interest_list
+    @interest_list = InterestList.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def interest_list_params
+    params.require(:interest_list).permit(:name, :public, :user_id)
+  end
 end

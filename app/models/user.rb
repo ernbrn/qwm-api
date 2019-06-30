@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable,
@@ -9,10 +11,10 @@ class User < ApplicationRecord
   has_many :favorites
 
   has_many :favorite_works, through: :favorites,
-           source: :favorable, source_type: 'Work'
+                            source: :favorable, source_type: 'Work'
 
   has_many :favorite_creators, through: :favorites,
-           source: :favorable, source_type: 'Creator'
+                               source: :favorable, source_type: 'Creator'
 
   has_one :collection
 end

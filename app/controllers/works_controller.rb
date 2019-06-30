@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class WorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_work
-      @work = Work.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def work_params
-      params.require(:work).permit(:title, :publish_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_work
+    @work = Work.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def work_params
+    params.require(:work).permit(:title, :publish_date)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CollectionWorksController < ApplicationController
   before_action :set_collection_work, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class CollectionWorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collection_work
-      @collection_work = CollectionWork.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def collection_work_params
-      params.require(:collection_work).permit(:work_id, :collection_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_collection_work
+    @collection_work = CollectionWork.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def collection_work_params
+    params.require(:collection_work).permit(:work_id, :collection_id)
+  end
 end
