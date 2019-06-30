@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class RatingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rating
-      @rating = Rating.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def rating_params
-      params.require(:rating).permit(:like, :severity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rating
+    @rating = Rating.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def rating_params
+    params.require(:rating).permit(:like, :severity)
+  end
 end

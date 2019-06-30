@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InterestList < ApplicationRecord
   belongs_to :user
 

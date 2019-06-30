@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :update, :destroy]
 
@@ -41,13 +43,14 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def link_params
-      params.require(:link).permit(:link, :link_text, :linkable_id, :linkable_type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_link
+    @link = Link.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def link_params
+    params.require(:link).permit(:link, :link_text, :linkable_id, :linkable_type)
+  end
 end

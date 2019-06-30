@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatorsController < ApplicationController
   before_action :set_creator, only: [:show, :update, :destroy]
 
@@ -40,13 +42,14 @@ class CreatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_creator
-      @creator = Creator.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def creator_params
-      params.require(:creator).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_creator
+    @creator = Creator.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def creator_params
+    params.require(:creator).permit(:name)
+  end
 end

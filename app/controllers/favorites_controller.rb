@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class FavoritesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite
-      @favorite = Favorite.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def favorite_params
-      params.require(:favorite).permit(:users_id, :public)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favorite
+    @favorite = Favorite.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def favorite_params
+    params.require(:favorite).permit(:users_id, :public)
+  end
 end

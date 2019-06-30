@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorkTypesController < ApplicationController
   before_action :set_work_type, only: [:show, :update, :destroy]
 
@@ -39,13 +41,14 @@ class WorkTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_work_type
-      @work_type = WorkType.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def work_type_params
-      params.require(:work_type).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_work_type
+    @work_type = WorkType.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def work_type_params
+    params.require(:work_type).permit(:name)
+  end
 end
