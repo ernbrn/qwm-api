@@ -1,10 +1,8 @@
 class WorksController < ApplicationController
-  before_action :set_work, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /works
   def index
-    @works = Work.all
-
     render json: @works
   end
 
@@ -15,8 +13,6 @@ class WorksController < ApplicationController
 
   # POST /works
   def create
-    @work = Work.new(work_params)
-
     if @work.save
       render json: @work, status: :created, location: @work
     else
@@ -39,13 +35,8 @@ class WorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_work
-      @work = Work.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def work_params
-      params.require(:work).permit(:title, :publish_date)
-    end
+  def work_params
+    params.require(:work).permit(:title, :publish_date)
+  end
 end

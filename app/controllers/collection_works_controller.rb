@@ -1,10 +1,8 @@
 class CollectionWorksController < ApplicationController
-  before_action :set_collection_work, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /collection_works
   def index
-    @collection_works = CollectionWork.all
-
     render json: @collection_works
   end
 
@@ -15,8 +13,6 @@ class CollectionWorksController < ApplicationController
 
   # POST /collection_works
   def create
-    @collection_work = CollectionWork.new(collection_work_params)
-
     if @collection_work.save
       render json: @collection_work, status: :created, location: @collection_work
     else
@@ -39,13 +35,8 @@ class CollectionWorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collection_work
-      @collection_work = CollectionWork.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def collection_work_params
-      params.require(:collection_work).permit(:work_id, :collection_id)
-    end
+  def collection_work_params
+    params.require(:collection_work).permit(:work_id, :collection_id)
+  end
 end

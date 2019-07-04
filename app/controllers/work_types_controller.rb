@@ -1,10 +1,8 @@
 class WorkTypesController < ApplicationController
-  before_action :set_work_type, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /work_types
   def index
-    @work_types = WorkType.all
-
     render json: @work_types
   end
 
@@ -15,8 +13,6 @@ class WorkTypesController < ApplicationController
 
   # POST /work_types
   def create
-    @work_type = WorkType.new(work_type_params)
-
     if @work_type.save
       render json: @work_type, status: :created, location: @work_type
     else
@@ -39,13 +35,8 @@ class WorkTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_work_type
-      @work_type = WorkType.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def work_type_params
-      params.require(:work_type).permit(:name)
-    end
+  def work_type_params
+    params.require(:work_type).permit(:name)
+  end
 end

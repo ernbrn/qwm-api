@@ -1,10 +1,8 @@
 class CreatorsController < ApplicationController
-  before_action :set_creator, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /creators
   def index
-    @creators = Creator.all
-
     render json: @creators
   end
 
@@ -15,8 +13,6 @@ class CreatorsController < ApplicationController
 
   # POST /creators
   def create
-    @creator = Creator.new(creator_params)
-
     if @creator.save
       render json: @creator, status: :created, location: @creator
     else
@@ -39,13 +35,8 @@ class CreatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_creator
-      @creator = Creator.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def creator_params
-      params.require(:creator).permit(:name)
-    end
+  def creator_params
+    params.require(:creator).permit(:name)
+  end
 end

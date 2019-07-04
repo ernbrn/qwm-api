@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/CanCanCommunity/cancancan.git
+  revision: 93ba1812b65d71ed8aea2cf5e83218259ed4484c
+  branch: feature/3.0.0
+  specs:
+    cancancan (3.0.0.rc1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -143,6 +150,11 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    pry-byebug (3.7.0)
+      byebug (~> 11.0)
+      pry (~> 0.10)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     psych (3.1.0)
     puma (3.12.1)
     rack (2.0.7)
@@ -189,6 +201,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rolify (5.2.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.3)
@@ -258,17 +271,19 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
-  byebug
+  cancancan!
   devise-jwt (~> 0.5.9)
   dotenv-rails
   factory_bot_rails
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
-  pry (~> 0.12.2)
+  pry-byebug (~> 3.6)
+  pry-rails (~> 0.3.9)
   puma (~> 3.11)
   rack-cors
   rails (~> 6.0.0.rc1)
   reek (~> 5.4.0)
+  rolify (~> 5.2)
   rspec-rails (~> 3.8)
   rubocop (~> 0.72.0)
   rubocop-rails (~> 2.1.0)

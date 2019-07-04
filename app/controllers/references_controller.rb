@@ -1,5 +1,5 @@
 class ReferencesController < ApplicationController
-  before_action :set_reference, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /references
   def index
@@ -39,13 +39,8 @@ class ReferencesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reference
-      @reference = Reference.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def reference_params
-      params.require(:reference).permit(:note)
-    end
+  def reference_params
+    params.require(:reference).permit(:note)
+  end
 end

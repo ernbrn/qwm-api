@@ -1,10 +1,8 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /collections
   def index
-    @collections = Collection.all
-
     render json: @collections
   end
 
@@ -15,8 +13,6 @@ class CollectionsController < ApplicationController
 
   # POST /collections
   def create
-    @collection = Collection.new(collection_params)
-
     if @collection.save
       render json: @collection, status: :created, location: @collection
     else
@@ -39,13 +35,8 @@ class CollectionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collection
-      @collection = Collection.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def collection_params
-      params.require(:collection).permit(:name, :user_id)
-    end
+  def collection_params
+    params.require(:collection).permit(:name, :user_id)
+  end
 end
