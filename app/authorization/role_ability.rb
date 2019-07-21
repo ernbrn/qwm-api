@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class Ability < ApplicationAbility
+class RoleAbility < Ability
 end

@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-class ApplicationAbility
+class Ability
   include CanCan::Ability
 
   def initialize(user)
-    return if user.blank?
-
     @user = user
 
     abilities
@@ -13,11 +11,9 @@ class ApplicationAbility
 
   private
 
-  attr_reader :user
-
   def abilities
-    user.roles.each do |role|
-      try("#{role.name}_abilities".to_sym)
-    end
+    raise NotImplementedError
   end
+
+  attr_reader :user
 end

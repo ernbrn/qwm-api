@@ -34,6 +34,6 @@ module AuthorizedResource
   end
 
   def derive_from_resource_name
-    "::_#{resource_name}_ability".classify.safe_constantize
+    "::_#{resource_name}_authorization".classify.safe_constantize
   end
 end
