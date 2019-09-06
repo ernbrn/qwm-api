@@ -13,6 +13,7 @@ class WorksController < ApplicationController
 
   # POST /works
   def create
+    @work.contributor = current_user
     if @work.save
       render json: @work, status: :created, location: @work
     else
