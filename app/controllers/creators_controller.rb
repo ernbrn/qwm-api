@@ -12,6 +12,7 @@ class CreatorsController < ApplicationController
   end
 
   # POST /creators
+  # POST /works/:work_id/creators
   def create
     if @creator.save
       render json: @creator, status: :created, location: @creator

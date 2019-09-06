@@ -1,7 +1,7 @@
 class InterestListsController < ApplicationController
   load_and_authorize_resource
 
-  # GET /interest_lists
+  # GET /users/:user_id/interest_lists
   def index
     render json: @interest_lists
   end
@@ -11,7 +11,7 @@ class InterestListsController < ApplicationController
     render json: @interest_list
   end
 
-  # POST /interest_lists
+  # POST /users/:user_id/interest_lists
   def create
     if @interest_list.save
       render json: @interest_list, status: :created, location: @interest_list

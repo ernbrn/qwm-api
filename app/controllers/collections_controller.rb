@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
   load_and_authorize_resource
 
-  # GET /collections
+  # GET /users/:user_id/collections
   def index
     render json: @collections
   end
@@ -11,7 +11,7 @@ class CollectionsController < ApplicationController
     render json: @collection
   end
 
-  # POST /collections
+  # POST /users/:user_id/collections
   def create
     if @collection.save
       render json: @collection, status: :created, location: @collection

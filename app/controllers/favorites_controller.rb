@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   load_and_authorize_resource
 
-  # GET /favorites
+  # GET /users/:user_id/favorites
   def index
     render json: @favorites
   end
@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
     render json: @favorite
   end
 
-  # POST /favorites
+  # POST /users/:user_id/favorites
   def create
     if @favorite.save
       render json: @favorite, status: :created, location: @favorite

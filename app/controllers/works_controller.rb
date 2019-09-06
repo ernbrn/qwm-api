@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   load_and_authorize_resource
 
   # GET /works
+  # GET /creators/:creator_id/works
   def index
     render json: @works
   end
@@ -12,6 +13,7 @@ class WorksController < ApplicationController
   end
 
   # POST /works
+  # POST /creators/:creator_id/works
   def create
     @work.contributor = current_user
     if @work.save

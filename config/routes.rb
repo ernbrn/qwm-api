@@ -1,16 +1,27 @@
 Rails.application.routes.draw do
   resources :collection_works
-  resources :collections
   resources :interest_list_works
-  resources :interest_lists
   resources :work_types
-  resources :links
-  resources :favorites
   devise_for :users, defaults: { format: :json }
-  resources :ratings
-  resources :reviews
-  resources :references
-  resources :creators
-  resources :works
+
+  resources :creators, shallow: true do
+    resources :works
+    resources :links
+    resources :references
+  end
+
+  resources :works, shallow: true do
+    resources :creators
+    resources :links
+    resources :references
+  end
+
+  resources :users, shallow: true do
+    resources :reviews
+    resources :ratings
+    resources :interest_lists
+    resources :favorites
+    resources :collections
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
