@@ -1,10 +1,8 @@
 class InterestListsController < ApplicationController
-  before_action :set_interest_list, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /interest_lists
   def index
-    @interest_lists = InterestList.all
-
     render json: @interest_lists
   end
 
@@ -15,8 +13,6 @@ class InterestListsController < ApplicationController
 
   # POST /interest_lists
   def create
-    @interest_list = InterestList.new(interest_list_params)
-
     if @interest_list.save
       render json: @interest_list, status: :created, location: @interest_list
     else
@@ -39,13 +35,9 @@ class InterestListsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_interest_list
-      @interest_list = InterestList.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def interest_list_params
-      params.require(:interest_list).permit(:name, :public, :user_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def interest_list_params
+    params.require(:interest_list).permit(:name, :public, :user_id)
+  end
 end

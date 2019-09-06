@@ -1,10 +1,8 @@
 class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /ratings
   def index
-    @ratings = Rating.all
-
     render json: @ratings
   end
 
@@ -15,8 +13,6 @@ class RatingsController < ApplicationController
 
   # POST /ratings
   def create
-    @rating = Rating.new(rating_params)
-
     if @rating.save
       render json: @rating, status: :created, location: @rating
     else
@@ -39,13 +35,8 @@ class RatingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rating
-      @rating = Rating.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def rating_params
-      params.require(:rating).permit(:like, :severity)
-    end
+  def rating_params
+    params.require(:rating).permit(:like, :severity)
+  end
 end

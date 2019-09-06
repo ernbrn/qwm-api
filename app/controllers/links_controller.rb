@@ -1,10 +1,8 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /links
   def index
-    @links = Link.all
-
     render json: @links
   end
 
@@ -15,8 +13,6 @@ class LinksController < ApplicationController
 
   # POST /links
   def create
-    @link = Link.new(link_params)
-
     if @link.save
       render json: @link, status: :created, location: @link
     else
@@ -39,13 +35,8 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def link_params
-      params.require(:link).permit(:link, :link_text, :linkable_id, :linkable_type)
-    end
+  def link_params
+    params.require(:link).permit(:link, :link_text, :linkable_id, :linkable_type)
+  end
 end

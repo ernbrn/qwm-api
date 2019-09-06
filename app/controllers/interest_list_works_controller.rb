@@ -1,10 +1,8 @@
 class InterestListWorksController < ApplicationController
-  before_action :set_interest_list_work, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /interest_list_works
   def index
-    @interest_list_works = InterestListWork.all
-
     render json: @interest_list_works
   end
 
@@ -15,8 +13,6 @@ class InterestListWorksController < ApplicationController
 
   # POST /interest_list_works
   def create
-    @interest_list_work = InterestListWork.new(interest_list_work_params)
-
     if @interest_list_work.save
       render json: @interest_list_work, status: :created, location: @interest_list_work
     else
@@ -39,13 +35,8 @@ class InterestListWorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_interest_list_work
-      @interest_list_work = InterestListWork.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def interest_list_work_params
-      params.require(:interest_list_work).permit(:interest_list_id, :work_id)
-    end
+  def interest_list_work_params
+    params.require(:interest_list_work).permit(:interest_list_id, :work_id)
+  end
 end
