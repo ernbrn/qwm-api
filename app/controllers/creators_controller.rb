@@ -3,7 +3,11 @@ class CreatorsController < ApplicationController
 
   # GET /creators
   def index
-    render json: @creators
+    if params[:name]
+      render json: @creators.where("name LIKE ?", "%#{params[:name]}%")
+    else
+      render json: @creators
+    end
   end
 
   # GET /creators/1

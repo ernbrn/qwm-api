@@ -4,7 +4,11 @@ class WorksController < ApplicationController
   # GET /works
   # GET /creators/:creator_id/works
   def index
-    render json: @works
+    if params[:name]
+      render json: @works.where("title LIKE ?", "%#{params[:name]}%")
+    else
+      render json: @works
+    end
   end
 
   # GET /works/1
