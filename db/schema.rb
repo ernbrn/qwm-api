@@ -12,55 +12,56 @@
 
 ActiveRecord::Schema.define(version: 2019_07_04_163950) do
 
-# These are extensions that must be enabled in order to support this database
-enable_extension "plpgsql"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-create_table "collection_works", force: :cascade do |t|
-  t.bigint "work_id", null: false
-  t.bigint "collection_id", null: false
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
-  t.index ["collection_id", "work_id"], name: "index_collection_works_on_collection_id_and_work_id", unique: true
-  t.index ["collection_id"], name: "index_collection_works_on_collection_id"
-  t.index ["work_id", "collection_id"], name: "index_collection_works_on_work_id_and_collection_id", unique: true
-  t.index ["work_id"], name: "index_collection_works_on_work_id"
-end
+  create_table "collection_works", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.bigint "collection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collection_id", "work_id"], name: "index_collection_works_on_collection_id_and_work_id", unique: true
+    t.index ["collection_id"], name: "index_collection_works_on_collection_id"
+    t.index ["work_id", "collection_id"], name: "index_collection_works_on_work_id_and_collection_id", unique: true
+    t.index ["work_id"], name: "index_collection_works_on_work_id"
+  end
 
-create_table "collections", force: :cascade do |t|
-  t.string "name"
-  t.bigint "user_id", null: false
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
-  t.index ["user_id"], name: "index_collections_on_user_id"
-end
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
 
-create_table "creators", force: :cascade do |t|
-  t.string "name"
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
-end
+  create_table "creators", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_creators_on_name", unique: true
+  end
 
-create_table "favorites", force: :cascade do |t|
-  t.boolean "public", default: true
-  t.bigint "user_id", null: false
-  t.string "favorable_type"
-  t.bigint "favorable_id"
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
-  t.index ["favorable_type", "favorable_id"], name: "index_favorites_on_favorable_type_and_favorable_id"
-  t.index ["user_id"], name: "index_favorites_on_user_id"
-end
+  create_table "favorites", force: :cascade do |t|
+    t.boolean "public", default: true
+    t.bigint "user_id", null: false
+    t.string "favorable_type"
+    t.bigint "favorable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["favorable_type", "favorable_id"], name: "index_favorites_on_favorable_type_and_favorable_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
-create_table "interest_list_works", force: :cascade do |t|
-  t.bigint "interest_list_id", null: false
-  t.bigint "work_id", null: false
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
-  t.index ["interest_list_id", "work_id"], name: "index_interest_list_works_on_interest_list_id_and_work_id", unique: true
-  t.index ["interest_list_id"], name: "index_interest_list_works_on_interest_list_id"
-  t.index ["work_id", "interest_list_id"], name: "index_interest_list_works_on_work_id_and_interest_list_id", unique: true
-  t.index ["work_id"], name: "index_interest_list_works_on_work_id"
-end
+  create_table "interest_list_works", force: :cascade do |t|
+    t.bigint "interest_list_id", null: false
+    t.bigint "work_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interest_list_id", "work_id"], name: "index_interest_list_works_on_interest_list_id_and_work_id", unique: true
+    t.index ["interest_list_id"], name: "index_interest_list_works_on_interest_list_id"
+    t.index ["work_id", "interest_list_id"], name: "index_interest_list_works_on_work_id_and_interest_list_id", unique: true
+    t.index ["work_id"], name: "index_interest_list_works_on_work_id"
+  end
 
   create_table "interest_lists", force: :cascade do |t|
     t.string "name"

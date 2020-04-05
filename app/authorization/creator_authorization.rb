@@ -4,12 +4,12 @@ class CreatorAuthorization < ResourceAuthorization
   class Guest < GuestAbility
     def abilities
       can :read, Creator
+      can :manage, Creator
     end
   end
 
   class Admin < RoleAbility
     def abilities
-      can :manage, Creator
     end
   end
 

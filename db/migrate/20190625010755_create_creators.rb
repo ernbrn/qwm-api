@@ -5,5 +5,7 @@ class CreateCreators < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :creators, :name, unique: true
   end
 end

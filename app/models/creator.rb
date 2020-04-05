@@ -1,4 +1,11 @@
 class Creator < ApplicationRecord
+  validates :name, presence: true, uniqueness: {
+    message: -> (object, data) do
+      "A creator with the name #{data[:value]} already exists"
+    end
+  }
+
+
   has_many :work_creators, dependent: :destroy
   has_many :works, through: :work_creators
   has_many :reviews, through: :works, dependent: :destroy

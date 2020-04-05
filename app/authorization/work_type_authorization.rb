@@ -6,12 +6,12 @@ class WorkTypeAuthorization < ResourceAuthorization
   class Guest < GuestAbility
     def abilities
       can :read, RESOURCE_CLASS
+      can :manage, RESOURCE_CLASS
     end
   end
 
   class Admin < RoleAbility
     def abilities
-      can :manage, RESOURCE_CLASS
     end
   end
 
