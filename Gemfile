@@ -23,7 +23,7 @@ gem 'puma', '~> 3.11'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'devise-jwt', '~> 0.5.9'
+gem 'devise-jwt', '~> 0.6.0'
 
 # Authorization
 gem 'cancancan', github: 'CanCanCommunity/cancancan', branch: 'feature/3.0.0'
