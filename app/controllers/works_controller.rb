@@ -20,6 +20,7 @@ class WorksController < ApplicationController
   # POST /creators/:creator_id/works
   def create
     @work.contributor = current_user
+    @work.creators << Creator.where(id: creator_ids)
     if @work.save
       render json: @work, status: :created, location: @work
     else
@@ -44,6 +45,14 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:title, :publish_date, :work_type_id)
+    params.require(:work).permit(:title, :publish_date, :work_type_id, :creators)
+  end
+
+  def creator_ids
+    return [] if !params[:work][:creators]
+
+    params[:work][:creators].map do |param|
+      param[:id]
+    end
   end
 end

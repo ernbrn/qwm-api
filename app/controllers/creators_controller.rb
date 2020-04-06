@@ -18,7 +18,7 @@ class CreatorsController < ApplicationController
   # POST /creators
   # POST /works/:work_id/creators
   def create
-    @creator.works = Work.where(id: work_ids)
+    @creator.works << Work.where(id: work_ids)
     if @creator.save
       render json: @creator, status: :created, location: @creator
     else
