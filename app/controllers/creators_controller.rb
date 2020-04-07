@@ -28,6 +28,7 @@ class CreatorsController < ApplicationController
 
   # PATCH/PUT /creators/1
   def update
+    @creator.works = Work.where(id: work_ids)
     if @creator.update(creator_params)
       render json: @creator
     else

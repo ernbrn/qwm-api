@@ -30,6 +30,7 @@ class WorksController < ApplicationController
 
   # PATCH/PUT /works/1
   def update
+    @work.creators = Creator.where(id: creator_ids)
     if @work.update(work_params)
       render json: @work
     else
