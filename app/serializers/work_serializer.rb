@@ -1,5 +1,5 @@
 class WorkSerializer < ActiveModel::Serializer
-  attributes :id, :title
+  attributes :id, :title, :work_type
 
   belongs_to :contributor
   belongs_to :work_type
