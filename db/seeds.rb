@@ -29,4 +29,6 @@ WorkType.create([
   {name: 'play'},
   {name: 'musical'},
   {name: 'podcast episode'},
+  {name: 'EP'},
+  {name: 'single'},
 ])
