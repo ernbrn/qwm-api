@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :creator_types
   resources :collection_works
   resources :interest_list_works
   resources :work_types

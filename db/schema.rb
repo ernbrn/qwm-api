@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_04_163950) do
+ActiveRecord::Schema.define(version: 2020_04_10_023231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2019_07_04_163950) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "creator_types", force: :cascade do |t|
+    t.string "name"
+    t.bigint "work_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["work_type_id"], name: "index_creator_types_on_work_type_id"
   end
 
   create_table "creators", force: :cascade do |t|
@@ -190,6 +198,7 @@ ActiveRecord::Schema.define(version: 2019_07_04_163950) do
   add_foreign_key "collection_works", "collections"
   add_foreign_key "collection_works", "works"
   add_foreign_key "collections", "users"
+  add_foreign_key "creator_types", "work_types"
   add_foreign_key "favorites", "users"
   add_foreign_key "interest_list_works", "interest_lists"
   add_foreign_key "interest_list_works", "works"
